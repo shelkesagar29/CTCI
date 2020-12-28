@@ -10,11 +10,13 @@ class Node:
         return "Data:{}, Prev:{}, Next:{}".format(self.data, self.prev, self.next)
 
 class LinkedList:
-    def __init__(self, initial_members=None):
+    def __init__(self, initial_members=None, double=False):
         # keep head and tail sentinel node
         self.head = Node()
         self.tail = Node()
         self.head.next = self.tail
+        if double:
+            self.tail.prev = self.head
         self.len = 0
         if initial_members is not None:
             # Initial members are always appended.
@@ -80,13 +82,26 @@ class LinkedList:
         for v in values:
             self.appendleft(v)
 
+    def reverse(self):
+        # reverse the linked list
+        prev = self.head # sentinel head is previous
+        curr = self.head.next
+        while curr:
+            t_next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = t_next
+        # swap head and tail
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+
 class DoubleLinkedList(LinkedList):
     def __init__(self, initial_members=None):
-        super().__init__(initial_members=initial_members)
-        self.tail.prev = self.head
+        super().__init__(initial_members=initial_members, double=True)
 
     def append(self, value):
-        # append node before tail node in the doubly linked list
+        # append nodes before tail.
         new_node = Node(data=value)
         new_node.next = self.tail
         new_node.prev = self.tail.prev
