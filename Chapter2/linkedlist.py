@@ -121,17 +121,4 @@ class DoubleLinkedList(LinkedList):
 if __name__ == "__main__":
     print("This module implements single and double linked lists \
     primarily used for testing all codes in this chapter.")
-    
-    test_ll_1 = LinkedList(initial_members=[1,2])
-    dup_node = test_ll_1.append(value=3)
-    _ = test_ll_1.append(value=4)
-    last_node = test_ll_1.append(5)
-    last_node.next = dup_node
 
-    curr_element = test_ll_1.head.next
-    rep = 10
-    while rep:
-        print(curr_element.data, end=" ")
-        curr_element = curr_element.next
-        rep-=1
-        
