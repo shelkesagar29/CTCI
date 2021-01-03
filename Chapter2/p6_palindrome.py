@@ -1,5 +1,5 @@
 import unittest
-from linkedlist import LinkedList
+from DS.linkedlist import LinkedList
 
 def solution1(ll):
     """
