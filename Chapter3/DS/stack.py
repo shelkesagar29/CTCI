@@ -10,6 +10,15 @@ class Stack:
         self.sentinel = Node(data=None)
         self.len = 0
 
+    def values(self):
+        r = []
+        current = self.sentinel.next
+        if current:
+            while current != None:
+                r.append(current.data)
+                current = current.next
+        return r
+
     def push(self, data):
         # push node to the stack
         new_node = Node(data=data)
